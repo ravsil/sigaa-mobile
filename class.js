@@ -55,11 +55,10 @@ async function loadClassPage(css, html) {
     }
 
     document.querySelector("#conteudo").addEventListener("touchmove", () => {
-        console.log("viado")
         document.querySelector("#conteudo").removeAttribute('style')
     });
     // sleep(200);
-    // document.querySelector("#conteudo").removeAttribute('style')
+    document.querySelector("#conteudo").removeAttribute('style')
 }
 
 const CLASS_CSS = `<style>
