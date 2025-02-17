@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Sigaa Mobile",
+  "version": "1.0",
+  "description": "Melhore a interface do Sigaa para dispositivos móveis",
+  "author": "ravsil",
+  "icons": {
+    "48": "icon.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://sigaa.ufrrj.br/sigaa/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://sigaa.ufrrj.br/sigaa/*"
+      ],
+      "js": [
+        "warn.js",
+        "mpage.js",
+        "class.js",
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sigaamobile@ravsil"
+    }
+  }
+}
