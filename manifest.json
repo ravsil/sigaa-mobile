@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sigaa Mobile",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Melhore a interface do Sigaa para dispositivos móveis",
   "author": "ravsil",
   "icons": {
