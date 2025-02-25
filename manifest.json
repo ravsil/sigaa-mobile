@@ -29,7 +29,8 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "sigaamobile@ravsil"
+      "id": "sigaa@ravsil",
+      "update_url": "https://ravsil.github.io/sigaa-mobile/updates.json"
     }
   }
 }
