@@ -9,7 +9,14 @@ async function loadMainPage(css, menu) {
 
     document.querySelectorAll('link[rel="stylesheet"], style').forEach(el => el.remove());
     document.querySelectorAll('br').forEach(br => br.remove());
-    document.getElementById('painel-mensagem-envio_mask').remove();
+    try {
+        document.getElementById('painel-mensagem-envio_mask').remove();
+    } catch (e) {
+        document.querySelector("body").addEventListener("touchmove", () => {
+            document.getElementById('painel-mensagem-envio_mask').remove();
+            document.querySelector("body").removeEventListener("touchmove", () => { })
+        })
+    }
     document.querySelector('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
     document.querySelector("#info-sistema > h1").setAttribute('onclick', "window.location.href = '/sigaa/verPortalDiscente.do'")
 
@@ -23,7 +30,14 @@ async function loadMainPage(css, menu) {
     document.querySelector("#form_links").remove()
     document.querySelector("#perfil-docente > p:nth-child(2)").remove()
     document.querySelector("#perfil-docente > p").remove()
-    document.querySelector("#painel-mensagem-envio_c").remove()
+    try {
+        document.querySelector("#painel-mensagem-envio_c").remove()
+    } catch (e) {
+        document.querySelector("body").addEventListener("touchmove", () => {
+            document.querySelector("#painel-mensagem-envio_c").remove()
+            document.querySelector("body").removeEventListener("touchmove", () => { })
+        });
+    }
     document.querySelector("#container > div:nth-child(3)").remove()
     document.querySelector("#noticias-portal").remove()
     // document.querySelector("#turmas-portal").remove()
@@ -72,8 +86,6 @@ async function loadMainPage(css, menu) {
 <tr><td>${document.querySelector("#agenda-docente2 > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(1) > acronym").innerText}</td><td>${document.querySelector("#agenda-docente2 > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > div").innerText}</td></tr><tr>${document.querySelector("#agenda-docente2 > tr:nth-child(2) > td > table > tbody > tr:nth-child(7)").innerHTML}</tr>`
 
     const updatedAgenda = document.querySelector("#agenda-docente2");
-    const newHeaderRow = updatedAgenda.querySelector("tr:has(td[colspan='2'])");
-
     const integralizationsContainer = document.createElement("div");
     const integralizationsTitle = document.createElement("h4");
     integralizationsTitle.textContent = "Integralizações";
@@ -88,7 +100,36 @@ async function loadMainPage(css, menu) {
     document.getElementById('agenda-docente3').addEventListener('click', function () {
         this.classList.toggle('collapsed');
     });
+    document.getElementById('agenda-docente3').insertAdjacentHTML('afterend', '<hr>')
 
+    // TURMAS
+    document.querySelector("#turmas-portal > table.subFormulario").remove()
+    document.querySelector("#turmas-portal > table:nth-child(2) > thead").remove()
+    document.querySelector("#turmas-portal > table:nth-child(2)").removeAttribute("style")
+
+    const turmas = (document.querySelector("#turmas-portal > table:nth-child(2) > tbody").childElementCount - 1) / 2
+    for (let i = 0; i < turmas; i++) {
+        let txt = document.querySelector(`#turmas-portal > table:nth-child(2) > tbody > tr:nth-child(${2 * (i + 1)}) > td:nth-child(2)`).innerText
+        if (!txt.includes("Bloco") || !txt.includes("Sala")) {
+            continue;
+        }
+        txt = txt.split(" ")
+        document.querySelector(`#turmas-portal > table:nth-child(2) > tbody > tr:nth-child(${2 * (i + 1)}) > td:nth-child(2)`).innerText = `${txt[1]} - ${txt[4]}`
+    }
+    // remove (...)
+    document.querySelectorAll("center").forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/\s*\([^)]*\)/g, '');
+    });
+
+    document.querySelectorAll(".descricao > form > a").forEach(el => {
+        el.innerText = el.innerText.split(' ').map(word => {
+            if (word.length >= 3) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }
+            return word.toLowerCase();
+        }).join(' ');
+    }
+    )
 
     document.querySelector("#info-sistema").innerHTML += menu
 }
@@ -178,7 +219,8 @@ const MAIN_CSS = `
 
         #agenda-docente>h4,
         #agenda-docente2>h4,
-        #agenda-docente3>h4 {
+        #agenda-docente3>h4,
+        #turmas-portal>h4 {
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             padding-left: 0.5rem;
@@ -245,6 +287,20 @@ const MAIN_CSS = `
 
         #rodape p {
             margin: 1rem;
+        }
+
+        #turmas-portal {
+          text-align: center;
+        }
+
+        #turmas-portal > table, .descricao>form>a {
+            font-size: 0.9rem;
+            text-align: left !important;
+        }
+        
+        .descricao>form>a, .mais>a {
+                text-decoration: none;
+                color: #414e83;
         }
 
         /*----------- MENU --------------*/
