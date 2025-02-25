@@ -51,10 +51,12 @@ async function loadClassPage(css, html) {
 
     document.querySelector('head').innerHTML += css;
     for (let i = 0; i < 5; i++) {
-        document.querySelector("#ultimaNoticia").insertAdjacentHTML('beforebegin', '<br>');
+        try {
+            document.querySelector("#ultimaNoticia").insertAdjacentHTML('beforebegin', '<br>');
+        } catch (e) { }
     }
 
-    document.querySelector("#conteudo").addEventListener("touchmove", () => {
+    document.querySelector("body").addEventListener("touchmove", () => {
         document.querySelector("#conteudo").removeAttribute('style')
     });
     // sleep(200);

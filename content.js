@@ -1,15 +1,8 @@
 async function main() {
     try {
-        // if (window.location.href == "https://sigaa.ufrrj.br/sigaa/mobile/touch/login.jsf") { }
-        async function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+        if (document.querySelector("#j_id_jsp_1311826277_7 > p > small > a").innerText == "Modo Clássico") {
+            document.querySelector("#j_id_jsp_1311826277_7 > p > small > a").click()
         }
-
-        await sleep(200);
-        document.querySelector("#form-login\\:entrar").addEventListener("click", async () => {
-            await sleep(600);
-            document.querySelector("#j_id_jsp_846791597_19 > p > small > a").click();
-        });
     } catch (e) { }
 
     try {

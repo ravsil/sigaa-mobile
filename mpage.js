@@ -7,6 +7,15 @@ async function loadMainPage(css, menu) {
     }
     await sleep(300);
 
+    try {
+        let msg = document.querySelector("#painel-erros").innerText
+        document.querySelector("#painel-erros").remove()
+        // ensures alert will be shown after loading
+        setTimeout(() => {
+            alert(msg.replace("(x) fechar mensagens", ""));
+        }, 1);
+    } catch (e) { }
+
     document.querySelectorAll('link[rel="stylesheet"], style').forEach(el => el.remove());
     document.querySelectorAll('br').forEach(br => br.remove());
     try {
@@ -430,5 +439,5 @@ const MENU = `
             de Atividades Autônomas</a>
         <a onclick="cmItemMouseUp(document.querySelector('#cmSubMenuID9 > table > tbody > tr:nth-child(4)'), 65)">Consultar
             Turma</a>
-        <a>Sair</a>
+        <a href="/sigaa/logar.do?dispatch=logOff">Sair</a>
     </div>`
