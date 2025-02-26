@@ -2,7 +2,7 @@
 
 Essa extensão visa melhorar o visual antigo e confuso do sigaa da UFRRJ para uma melhor naveção nos dispositivos móveis, focando nos recursos essenciais.
 
-[![Download](https://img.shields.io/badge/Download-blue)](https://github.com/ravsil/sigaa-mobile/releases/download/1.2/sigaa-mobile.xpi)
+[![Download](https://img.shields.io/badge/Download-blue)](https://github.com/ravsil/sigaa-mobile/releases/download/1.2.1/sigaa-mobile.xpi)
 ## Página Inicial
 A página inicial foi completamente refeita, simplificando significativamente a navegação:
 
