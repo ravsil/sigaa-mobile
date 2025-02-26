@@ -33,16 +33,18 @@ async function loadClassPage(css, html) {
     const className = document.querySelector("#nomeTurma").innerText.replaceAll("\n", "");
 
     document.querySelector('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
-    document.getElementById("barraDireita").setAttribute("style", "display: none !important")
-    document.getElementById("barraEsquerda").setAttribute("style", "display: none !important")
-    document.getElementById("cabecalho").setAttribute("style", "display: none !important")
-    document.querySelector("#formMenu").setAttribute("style", "display: none !important")
-    document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-north.ui-layout-resizer-open.ui-layout-resizer-north-open").setAttribute("style", "display: none !important")
-    document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-east.ui-layout-resizer-open.ui-layout-resizer-east-open").setAttribute("style", "display: none !important")
-    document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-west.ui-layout-resizer-open.ui-layout-resizer-west-open").setAttribute("style", "display: none !important")
-    document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-south.ui-layout-resizer-open.ui-layout-resizer-south-open").setAttribute("style", "display: none !important")
-    document.querySelector("#rodape").setAttribute("style", "display: none !important")
-
+    setTimeout(() => {
+        document.getElementById("barraDireita").setAttribute("style", "display: none !important")
+        document.getElementById("barraEsquerda").setAttribute("style", "display: none !important")
+        document.getElementById("cabecalho").setAttribute("style", "display: none !important")
+        document.querySelector("#formMenu").setAttribute("style", "display: none !important")
+        document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-north.ui-layout-resizer-open.ui-layout-resizer-north-open").setAttribute("style", "display: none !important")
+        document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-east.ui-layout-resizer-open.ui-layout-resizer-east-open").setAttribute("style", "display: none !important")
+        document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-west.ui-layout-resizer-open.ui-layout-resizer-west-open").setAttribute("style", "display: none !important")
+        document.querySelector("#baseLayout > div.ui-layout-resizer.ui-layout-resizer-south.ui-layout-resizer-open.ui-layout-resizer-south-open").setAttribute("style", "display: none !important")
+        document.querySelector("#rodape").setAttribute("style", "display: none !important")
+        document.querySelector("#conteudo").removeAttribute('style')
+    }, 100)
     const header = document.createElement("div");
     header.setAttribute("id", "myinfo");
     header.innerHTML = `<div id="title">${className}</div>`;
@@ -59,8 +61,6 @@ async function loadClassPage(css, html) {
     document.querySelector("body").addEventListener("touchmove", () => {
         document.querySelector("#conteudo").removeAttribute('style')
     });
-    // sleep(200);
-    document.querySelector("#conteudo").removeAttribute('style')
 }
 
 const CLASS_CSS = `<style>

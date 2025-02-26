@@ -5,6 +5,10 @@
                 {
                     "version": "1.2",
                     "update_link": "https://github.com/ravsil/sigaa-mobile/releases/download/1.2/sigaa-mobile.xpi"
+                },
+                {
+                    "version": "1.2.1",
+                    "update_link": "https://github.com/ravsil/sigaa-mobile/releases/download/1.2.1/sigaa-mobile.xpi"
                 }
             ]
         }
